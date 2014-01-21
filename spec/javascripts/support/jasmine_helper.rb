@@ -9,3 +9,5 @@
 #end
 #
 
+# rake jasmine
+# http://localhost:8888

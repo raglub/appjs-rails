@@ -1,7 +1,7 @@
 describe("app", function() {
 
   beforeEach(function() {
-    app._addSingleton('example', function(){});
+    app._singleton.add('example', function(){});
   });
 
   it("should be able to create example singleton", function() {

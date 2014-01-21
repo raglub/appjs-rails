@@ -5,10 +5,25 @@ var app = (function() {
     return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
   };
 
+  var singletons = []
+
   return {
-    _addSingleton: function(name, fn) {
-      app[name] = fn;
-      app[name].init = function(){ };
+    _singleton: {
+      add: function(name, fn) {
+        app[name] = fn;
+        singletons.push(name);
+        app[name].init = function(){
+          app[name] = app[name]();
+          if(app[name] == undefined) {
+            app[name] = {};
+          }
+          app[name].init = function(){
+            return app[name];
+          }
+          return app[name];
+        };
+      },
+      defined: singletons
     },
     // free generator http://ajaxload.info/
     _ajax: {
@@ -22,5 +37,4 @@ var app = (function() {
       return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     }
   }
-
 })();

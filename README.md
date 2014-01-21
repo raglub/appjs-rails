@@ -1,5 +1,6 @@
 # Appjs::Rails
 [![Gem Version](https://badge.fury.io/rb/appjs-rails.png)](http://badge.fury.io/rb/appjs-rails)
+[![Dependency Status](https://gemnasium.com/raglub/appjs-rails.png)](https://gemnasium.com/raglub/appjs-rails)
 
 The additional library for javaScript
 
@@ -19,10 +20,14 @@ Or install it yourself as:
 
 ## Usage
 
+The app file will be added to the asset pipeline when you in file ```app/assets/javascripts/application.js``` add this line:
+
+//= require app
+
 Creation new singleton
 
 ```javascript
-app._addSingleton('example', function() {
+app._singleton.add('example', function() {
   return {
     toString: 'Class Example'
   }
@@ -30,7 +35,7 @@ app._addSingleton('example', function() {
 app.example.init();
 app.example.toString; // 'Class Example'
 ```
-Generaion UUID
+Generation UUID
 
 ```javascript
 app._uuid(); //6b644386-6ccb-98af-1144-6b8de194387a
