@@ -23,7 +23,11 @@ var app = (function() {
           return app[name];
         };
       },
-      defined: singletons
+      init: function(name, fn) {
+        app._singleton.add(name, fn);
+        return app[name].init();
+      },
+      listAdded: singletons
     },
     // free generator http://ajaxload.info/
     _ajax: {

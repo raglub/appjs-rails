@@ -18,13 +18,15 @@ Or install it yourself as:
 
     $ gem install appjs-rails
 
-## Usage
-
 The app file will be added to the asset pipeline when you in file ```app/assets/javascripts/application.js``` add this line:
 
+```
 //= require app
+```
 
-Creation new singleton
+## Usage
+
+Creation new singleton without initialize
 
 ```javascript
 app._singleton.add('example', function() {
@@ -35,6 +37,19 @@ app._singleton.add('example', function() {
 app.example.init();
 app.example.toString; // 'Class Example'
 ```
+
+Creation new singleton with initialize
+
+
+```javascript
+app._singleton.init('example', function() {
+  return {
+    toString: 'Class Example'
+  }
+} );
+app.example.toString; // 'Class Example'
+```
+
 Generation UUID
 
 ```javascript
