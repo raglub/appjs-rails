@@ -56,6 +56,20 @@ Generation UUID
 app._uuid(); //6b644386-6ccb-98af-1144-6b8de194387a
 ```
 
+We can Extend Array object by using function
+
+```javascript
+app._config.array()
+```
+
+Now all Array object has got functions
+
+```javascript
+[1, 2, 3].equal('2, 3'); // false
+[1, 2, 3].any(); // true
+[1, 2, 3].empty(); // false
+['1', '2', '3'].each(function(item) {console.log('item: ' + item)} );
+```
 # License
 
 appjs-rails uses the MIT license. Please check the [LICENSE][] file for more details.

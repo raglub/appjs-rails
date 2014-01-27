@@ -33,7 +33,31 @@ var app = (function() {
     _ajax: {
       addEvent: {
         lockAfterClick: function() {
-          $("a[data-remote='true']").bind('ajax:')
+          $("a[data-remote='true']").bind('ajax:beforeSend', function(){
+            window.example = "beforeSend"
+          }).bind("ajax:success", function() {
+            window.example += 'success';
+          }).bind("ajax:complete", function(event, data, status, xhr) {
+            window.example += 'complete';
+          });
+        }
+      }
+    },
+    _config: {
+      array: function(){
+        Array.prototype.each = function(fn) {
+          for(var i=0; i<this.length; i++) {
+            fn(this[i]);
+          }
+        }
+        Array.prototype.any = function() {
+          return (this.length > 0);
+        }
+        Array.prototype.empty = function() {
+          return (this.length == 0);
+        }
+        Array.prototype.equal = function(nextArray) {
+          return JSON.stringify(this) == JSON.stringify(nextArray);
         }
       }
     },
