@@ -1,4 +1,5 @@
 describe("app", function() {
+  document.write('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" ></script>');
 
   describe("#_singleton", function() {
     it("should be able to create example singleton without initialize", function() {
@@ -43,11 +44,27 @@ describe("app", function() {
       expect([1, '2', 3].equal([1, '2', 3])).toEqual(true);
     })
 
+    it('#erase', function(){
+      expect([1, '2', 3].erase()).toEqual([]);
+    })
+
+    it('#last', function(){
+      expect([1, '2', 3].last()).toEqual(3);
+      expect([1].last()).toEqual(1);
+      expect([].last()).toEqual(undefined);
+    })
+
+    it('#first', function(){
+      expect([1, '2', 3].first()).toEqual(1);
+      expect([1].first()).toEqual(1);
+      expect([].first()).toEqual(undefined);
+    })
+
   });
 
   describe('#_ajax', function(){
     it('#addEvent', function(){
-      //app._ajax.addEvent.lockAfterClick();
+      app._ajax.addEvent.lockAfterClick();
     })
   })
 

@@ -45,13 +45,14 @@ var app = (function() {
     },
     _config: {
       array: function(){
+
+        Array.prototype.any = function() {
+          return (this.length > 0);
+        }
         Array.prototype.each = function(fn) {
           for(var i=0; i<this.length; i++) {
             fn(this[i]);
           }
-        }
-        Array.prototype.any = function() {
-          return (this.length > 0);
         }
         Array.prototype.empty = function() {
           return (this.length == 0);
@@ -59,6 +60,23 @@ var app = (function() {
         Array.prototype.equal = function(nextArray) {
           return JSON.stringify(this) == JSON.stringify(nextArray);
         }
+        Array.prototype.erase = function() {
+          var length = this.length
+          for(var i=0; i<length; i++) {
+            this.pop();
+          }
+          return this;
+        }
+        Array.prototype.last = function() {
+          return this[this.length-1];
+        }
+        Array.prototype.first = function() {
+          return this[0];
+        }
+
+      },
+      debug: function(){
+        debugger;
       }
     },
     _uuid: function(){

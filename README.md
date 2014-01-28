@@ -66,9 +66,21 @@ Now all Array object has got functions
 
 ```javascript
 [1, 2, 3].equal('2, 3'); // false
+
 [1, 2, 3].any(); // true
+
 [1, 2, 3].empty(); // false
+
 ['1', '2', '3'].each(function(item) {console.log('item: ' + item)} );
+
+['1', '2', '3'].erase(); // []
+
+['1', '2', '3'].first(); // 1
+
+[].first(); // undefined
+
+['a', 'b'].last(); // 'b'
+
 ```
 # License
 
