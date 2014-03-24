@@ -82,6 +82,31 @@ Now all Array object has got functions
 ['a', 'b'].last(); // 'b'
 
 ```
+
+### For Bootstrap 3
+
+Adding a counter that counts how many characters left to use
+Use requires the following steps:
+
+* You must add initializer into script
+
+```javascript
+  app._bootstrap.inputDownCounter();
+```
+
+* Adding class 'js-input-down-counter-x' (where x is a natural number) into an input tag.
+
+For Example
+
+```html
+  <div class="form-group">
+    <label class="col-lg-3 control-label">Name</label>
+    <div class="controls">
+      <input type='text' class='form-control js-input-down-counter-20" value='Example'>
+    </div>
+  </div>
+```
+
 # License
 
 appjs-rails uses the MIT license. Please check the [LICENSE][] file for more details.

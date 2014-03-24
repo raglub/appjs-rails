@@ -81,6 +81,59 @@ var app = (function() {
     },
     _uuid: function(){
       return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    },
+    _bootstrap: {
+      inputDownCounter: function(){
+        jInputs = $('[class*="js-input-down-counter-"]');
+
+        for(var i=0; i< jInputs.length; i++){
+          if (!$(jInputs[i]).hasClass('js-used-input-down-counter')) {
+            var maxNameLength = undefined;
+
+            $(jInputs[i]).attr('class').split(' ').map(function(item){
+              if(!item.indexOf('js-input-down-counter-')){
+                maxNameLength = item.split('-').last();
+              }
+            })
+
+            jInputGroup = $('<div class="input-group"></div>');
+            jInputGroup.insertBefore($(jInputs[i]));
+            jInputGroup.append($(jInputs[i]));
+
+            $('<span class="text-muted input-group-addon add-on" style="background: #fff">0</span>').insertAfter($(jInputs[i]))
+            var usedChar = maxNameLength - parseInt($(jInputs[i]).val().length);
+            $(jInputs[i]).next().text(usedChar);
+            $(jInputs[i]).bind('keyup', function(){
+              var usedChar = maxNameLength - parseInt($(this).val().length);
+              if (usedChar >= 0) {
+                $(this).next().text(usedChar);
+              } else {
+                $(this).next().text(0);
+                $(this).val($(this).val().substr(0, maxNameLength));
+              }
+            })
+            $(jInputs[i]).addClass('js-used-input-down-counter');
+          }
+        }
+      },
+      showIcons: function(){
+        styles = document.styleSheets;
+        result = []
+
+        for (i=0; i< styles.length; i++) {
+          style = styles[i];
+          for(j=0; j< style.cssRules.length; j++) {
+            if(style.cssRules[j].cssText.match('glyphicon-.*::')) {
+              result.push(style.cssRules[j].cssText.match("(glyphicon-.*)::.*")[1])
+            }
+          }
+        }
+
+        for(i=0; i<result.length; i++){
+          $('#page-wrapper').append("<div class='col-lg-3'><span style='font-size: 30px' class='glyphicon " + result[i]  + "'></span> " + result[i] + "</div>")
+        }
+      }
     }
+
   }
 })();
