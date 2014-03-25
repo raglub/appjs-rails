@@ -84,9 +84,9 @@ var app = (function() {
     },
     _bootstrap: {
       inputDownCounter: function(){
-        jInputs = $('[class*="js-input-down-counter-"]');
+        var jInputs = $('[class*="js-input-down-counter-"]');
 
-        for(var i=0; i< jInputs.length; i++){
+        for(var i = 0; i < jInputs.length; i++){
           if (!$(jInputs[i]).hasClass('js-used-input-down-counter')) {
             var maxNameLength = undefined;
 
@@ -96,7 +96,7 @@ var app = (function() {
               }
             })
 
-            jInputGroup = $('<div class="input-group"></div>');
+            var jInputGroup = $('<div class="input-group"></div>');
             jInputGroup.insertBefore($(jInputs[i]));
             jInputGroup.append($(jInputs[i]));
 
@@ -117,14 +117,15 @@ var app = (function() {
         }
       },
       showIcons: function(){
-        styles = document.styleSheets;
-        result = []
-
-        for (i=0; i< styles.length; i++) {
-          style = styles[i];
-          for(j=0; j< style.cssRules.length; j++) {
-            if(style.cssRules[j].cssText.match('glyphicon-.*::')) {
-              result.push(style.cssRules[j].cssText.match("(glyphicon-.*)::.*")[1])
+        var styles = document.styleSheets;
+        var result = []
+        for (var i = 0; i < styles.length; i++) {
+          var style = styles[i];
+          if (style.cssRules != null) {
+            for(var j=0; j < style.cssRules.length; j++) {
+              if(style.cssRules[j].cssText.match('glyphicon-.*::')) {
+                result.push(style.cssRules[j].cssText.match("(glyphicon-.*)::.*")[1])
+              }
             }
           }
         }
@@ -132,8 +133,10 @@ var app = (function() {
         for(i=0; i<result.length; i++){
           $('#page-wrapper').append("<div class='col-lg-3'><span style='font-size: 30px' class='glyphicon " + result[i]  + "'></span> " + result[i] + "</div>")
         }
+      },
+      icon: function(subname) {
+        return $("<span class='glyphicon glyphicon-" + subname + "'></span>")
       }
     }
-
   }
 })();

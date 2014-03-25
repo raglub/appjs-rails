@@ -94,7 +94,7 @@ Use requires the following steps:
   app._bootstrap.inputDownCounter();
 ```
 
-* Adding class 'js-input-down-counter-x' (where x is a natural number) into an input tag.
+* Adding class 'js-input-down-counter-x' (where x is a limit to down count) into an input tag.
 
 For Example
 

@@ -68,4 +68,22 @@ describe("app", function() {
     })
   })
 
+  describe('#_bootstrap', function(){
+    it('#inputDownCounter', function(){
+      $('body').append('<div class="jasmine-content"><input class="js-input-down-counter-25" value="Example"></div>')
+      app._bootstrap.inputDownCounter();
+      expect($('input').next().text()).toEqual('18');
+      $('.jasmine-content').remove();
+    })
+
+    it('#showIcons', function(){
+      app._bootstrap.showIcons();
+    })
+
+    it('#icon', function(){
+      expect(app._bootstrap.icon('ok')).toEqual($("<span class='glyphicon glyphicon-ok'></span>"));
+    })
+
+  })
+
 });
